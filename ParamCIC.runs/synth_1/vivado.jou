@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.2 (64-bit)
+# SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
+# IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
+# Start of session at: Fri Mar 21 19:58:59 2025
+# Process ID: 7028
+# Current directory: D:/Documentos/Xilinx/FILTROS/ParameterizedFIR/FIR.runs/synth_1
+# Command line: vivado.exe -log firx2_param.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source firx2_param.tcl
+# Log file: D:/Documentos/Xilinx/FILTROS/ParameterizedFIR/FIR.runs/synth_1/firx2_param.vds
+# Journal file: D:/Documentos/Xilinx/FILTROS/ParameterizedFIR/FIR.runs/synth_1\vivado.jou
+# Running On: OFICINA-HP, OS: Windows, CPU Frequency: 2994 MHz, CPU Physical cores: 12, Host memory: 25087 MB
+#-----------------------------------------------------------
+source firx2_param.tcl -notrace
