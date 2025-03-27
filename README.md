@@ -12,20 +12,20 @@ This project implements a **CIC (Cascaded Integrator-Comb) interpolator**, desig
 The Python script allows for configuring and analyzing the CIC interpolator. It provides:
 - Calculation of required bit-width and scaling based on the filter order and interpolation factor.
 - Frequency response visualization, including magnitude and phase plots.
-- File generation for Verilog-compatible coefficient values and parameters.
+- File generation for Verilog-compatible data signals and parameters.
 
 ## Verilog Implementation
-The Verilog module `cic_interp` implements the CIC interpolator with the following key features:
+The Verilog module `cic_int` implements the CIC interpolator with the following key features:
 
 ### Parameters
 - `NBits`: Bit-width of the input and output signals.
 - `width`: Internal bit-width for the filter registers (determined by interpolation factor and number of stages).
-- `interp_ratio`: Interpolation factor, defining the upsampling rate.
+- `int_ratio`: Interpolation factor, defining the upsampling rate.
 - `M`: Differential delay for the comb section.
 
 ### Inputs
 - `clk`: Base clock signal.
-- `clk_interp`: Interpolated clock (higher frequency).
+- `clk_int`: Interpolated clock (higher frequency).
 - `rst`: Reset signal to clear registers.
 - `data_in`: Input data signal.
 
