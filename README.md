@@ -38,13 +38,12 @@ The Verilog module `cic_int` implements the CIC interpolator with the following 
 3. **Integrator Section**: Performs cumulative summation at the higher clock rate.
 
 ## How to Use
-1. Configure the parameters in the Verilog file to match your desired interpolation factor and bit-width.
-2. Run the Python script to analyze the filter response and generate necessary coefficients.
+1. Run the Python script to analyze the filter response and estimate the necesary stages and delays.
+2. Configure the parameters in the Verilog file to match your desired interpolation factor and bit-width.
 3. Integrate the Verilog module into your FPGA or ASIC design.
 
-## License
-This project is released under the MIT License.
 
 ## Author
-[Your Name]
+Author: Juan Ignacio Morales
+Email: morales.juan.ignacio@gmail.com
 
