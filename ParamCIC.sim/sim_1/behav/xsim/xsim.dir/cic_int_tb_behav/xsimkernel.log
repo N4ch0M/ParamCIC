@@ -2,3 +2,6 @@ Running: xsim.dir/cic_int_tb_behav/xsimk.exe -simmode gui -wdb cic_int_tb_behav.
 Design successfully loaded
 Design Loading Memory Usage: 8820 KB (Peak: 8820 KB)
 Design Loading CPU Usage: 0 ms
+Simulation completed
+Simulation Memory Usage: 10316 KB (Peak: 10316 KB)
+Simulation CPU Usage: 30 ms
