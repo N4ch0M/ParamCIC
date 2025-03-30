@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 
 # Parámetros
 f_clk = 50e6        # Frecuencia de reloj en Hz
-R = 2               # Factor de interpolación
+R = 5               # Factor de interpolación
 M = 3               # Retardo diferencial
-N = 1               # Número de secciones
+N = 3               # Número de secciones
 
 # El filtro CIC se puede representar como una cascada de integradores y combinadores.
 # H(s) = (1 - z^(-M))^num_sections / (1 - z^(-1))^num_sections
@@ -47,7 +47,7 @@ plt.figure(figsize=(10, 6))
 plt.plot(f, 20 * np.log10(magnitude), label='CIC')
 
 # Personaliza la gráfica
-plt.title('Comparación de la Respuesta en Frecuencia (16-bit vs Flotante)')
+plt.title('Respuesta en Frecuencia')
 plt.xlabel('Frecuencia (Hz)')
 plt.ylabel('Magnitud (dB)')
 plt.grid(True)
@@ -68,11 +68,11 @@ f_clk = 50e6        # Frecuencia de reloj
 t = np.linspace(0, 0.01, int(0.01 * f_clk), endpoint=False)  
 
 # Señal mixta con dos frecuencias
-f1 = 2e5
-f2 = 10e6
+f1 = 1e5
+f2 = 4e6
 signal = 0.5 * np.sin(2 * np.pi * f1 * t) + 0.35 * np.sin(2 * np.pi * f2 * t)
 
-# Filtrar la señal usando el filtro FIR
+# Filtrar la señal usando el filtro CIC
 filtered_signal = np.convolve(signal, h, mode='same')
 
 # Graficar la señal original y la filtrada en el dominio del tiempo

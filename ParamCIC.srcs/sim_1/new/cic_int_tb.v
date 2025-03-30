@@ -10,13 +10,13 @@ module cic_int_tb;
   // --------------------------------------------------------------- //
   //******************* Parameter Declarations **********************//
   // --------------------------------------------------------------- //
-  parameter   NBits           = 16;
-  parameter   width           = 20;
-  parameter   R               = 2;
-  parameter   M               = 3;
-  parameter   NData           = 2000;
-  parameter   CLK_PERIOD      = 20;
-  parameter   CLK_INT_PERIOD  = 10;
+  parameter integer   NBits           = 16;
+  parameter integer   Width           = 20;
+  parameter integer   R               = 2;
+  parameter integer   M               = 3;
+  parameter integer   NData           = 2000;
+  parameter integer   CLK_PERIOD      = 20;
+  parameter integer   CLK_INT_PERIOD  = 10;
 
   // --------------------------------------------------------------- //
   //******************** Register Declarations **********************//
@@ -24,7 +24,7 @@ module cic_int_tb;
   reg                         rst;                    //! Reset
   reg                         clk;                    //! Clock
   reg                         clk_int;                //! Interpolation Clock
-  reg signed  [NBits-1:0]     data_mem[NData-1:0];    //! Input data
+  reg signed  [NBits-1:0]     data_mem[0:NData-1];    //! Input data
   reg         [11:0]          idx;                    //! Index to read the data
 
   // --------------------------------------------------------------- //
@@ -41,7 +41,7 @@ module cic_int_tb;
   cic_int #(
             // Parameters
             .NBits      (NBits),
-            .width      (width),
+            .Width      (Width),
             .R          (R),
             .M          (M)
           ) cic_int_i (
@@ -101,7 +101,8 @@ module cic_int_tb;
   //-------------------------- Signal Monitor ------------------------------
   initial
   begin
-    $monitor("Time = %0t | data_in = %h | data_out = %h | rst = %b", $time, data_in, data_out, rst);
+    $monitor("Time = %0t | data_in = %h | data_out = %h | rst = %b",
+             $time, data_in, data_out, rst);
   end
 
 endmodule
