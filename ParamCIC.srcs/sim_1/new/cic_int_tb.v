@@ -12,11 +12,11 @@ module cic_int_tb;
   // --------------------------------------------------------------- //
   parameter integer   NBits           = 16;
   parameter integer   Width           = 20;
-  parameter integer   R               = 2;
+  parameter integer   R               = 5;
   parameter integer   M               = 3;
   parameter integer   NData           = 2000;
   parameter integer   CLK_PERIOD      = 20;
-  parameter integer   CLK_INT_PERIOD  = 10;
+  parameter integer   CLK_INT_PERIOD  = CLK_PERIOD/R;
 
   // --------------------------------------------------------------- //
   //******************** Register Declarations **********************//

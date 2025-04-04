@@ -1,6 +1,6 @@
 """Parameterized CIC Interpolation Filter using Python"""
 
-# Bloque 1 Genera el filtro CIC Interpolador
+#%% Bloque 1 Genera el filtro CIC Interpolador
 # ============================================
 
 # Importa librerías
@@ -8,9 +8,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parámetros
-f_clk = 50e6        # Frecuencia de reloj en Hz
-R = 5               # Factor de interpolación
-M = 3               # Retardo diferencial
+f_clk = 25e6        # Frecuencia de reloj en Hz
+R = 10              # Factor de interpolación
+M = 1               # Retardo diferencial
 N = 3               # Número de secciones
 
 # El filtro CIC se puede representar como una cascada de integradores y combinadores.
@@ -18,10 +18,10 @@ N = 3               # Número de secciones
 # Para esto, usamos la versión digital del filtro.
 
 # Función de transferencia en frecuencia
-z = np.exp(2j * np.pi * np.linspace(0, 0.5, 1024 * R))
+z = np.exp(2j * np.pi * np.linspace(0, 0.5, 1024))
 
 # Respuesta en frecuencia del filtro CIC (en términos de Z)
-numerator = (1 - z**(-M))**N
+numerator = (1 - z**(-R*M))**N
 denominator = (1 - z**(-1))**N
 # Evita división por cero en el denominador (evitar que se aproxime a cero)
 denominator = np.where(np.abs(denominator) < 1e-9, 1e-9, denominator)
@@ -33,8 +33,8 @@ magnitude = np.abs(h)
 # Reemplaza los valores cercanos a cero con un valor mínimo pequeño
 magnitude = np.maximum(magnitude, 1e-9)
 
-# Convertimos la frecuencia normalizada a Hz, ajustando por el factor de interpolación
-f = np.linspace(0, f_clk / R / 2, 1024 * R)  # Dividimos f_clk por R
+# Frecuencia normalizada
+f = np.linspace(0, f_clk/2, 1024)
 
 # ========================
 # Muestra los resultados
@@ -52,7 +52,7 @@ plt.xlabel('Frecuencia (Hz)')
 plt.ylabel('Magnitud (dB)')
 plt.grid(True)
 plt.legend()
-plt.ylim(-100, 30)
+plt.ylim(-50, 50)
 plt.tight_layout()
 plt.show()
 
@@ -64,12 +64,12 @@ plt.show()
 # ======================================================================
 
 # Vector de tiempo, 1 ms con frecuencia de muestreo f_clk
-f_clk = 50e6        # Frecuencia de reloj
+f_clk = 25e6        # Frecuencia de reloj
 t = np.linspace(0, 0.01, int(0.01 * f_clk), endpoint=False)  
 
 # Señal mixta con dos frecuencias
-f1 = 1e5
-f2 = 4e6
+f1 = 1e6
+f2 = 8e6
 signal = 0.5 * np.sin(2 * np.pi * f1 * t) + 0.35 * np.sin(2 * np.pi * f2 * t)
 
 # Filtrar la señal usando el filtro CIC
@@ -79,7 +79,7 @@ filtered_signal = np.convolve(signal, h, mode='same')
 plt.figure(figsize=(10, 6))
 
 # Señal original
-muestras = 1000
+muestras = 200
 plt.subplot(2, 2, 1)
 plt.plot(t[muestras*2:muestras*3], signal[muestras*2:muestras*3])  # Se muestra una porción para mejor visualización
 plt.title("Señal original en el dominio del tiempo")
@@ -122,7 +122,7 @@ plt.title("Espectro de la señal filtrada")
 plt.xlabel("Frecuencia (Hz)")
 plt.ylabel("Magnitud (dB)")
 plt.grid(True)
-plt.ylim(-50, 50)
+plt.ylim(-20, 60)
 
 plt.tight_layout()
 plt.show()
