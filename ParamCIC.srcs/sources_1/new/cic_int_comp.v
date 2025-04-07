@@ -10,8 +10,8 @@
 module cic_int_comp
   #(
      parameter  NBits      = 16,                     //! Number of bits data signal
-     parameter  NCoeff     = 14,                     //! Number of Coefficients FIR
-     parameter  Coeff_File = "M14_coefficients.dat", //! Coefficients filename
+     parameter  NCoeff     = 86,                     //! Number of Coefficients FIR
+     parameter  Coeff_File = "M86_coefficients.dat", //! Coefficients filename
      parameter  Width      = 20,                     //! Number of bits internal registers
      parameter  R          = 10,                     //! Interpolation ratio
      parameter  M          = 3,                      //! Number of delays

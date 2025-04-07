@@ -11,9 +11,9 @@ module cic_int_param_tb;
   //******************* Parameter Declarations **********************//
   // --------------------------------------------------------------- //
   parameter integer   NBits           = 16;
-  parameter integer   Width           = 19;
+  parameter integer   Width           = 22;
   parameter integer   R               = 10;
-  parameter integer   M               = 2;
+  parameter integer   M               = 1;
   parameter integer   N               = 3;
   parameter integer   NData           = 500;
   parameter integer   CLK_PERIOD      = 40;

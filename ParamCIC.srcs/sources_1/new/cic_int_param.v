@@ -1,15 +1,15 @@
 //! @title CIC interpolation filter
 //! @author J. I. Morales (morales.juan.ignacio@gmail.com)
 //! @version 1.1
-//! @date Parametrizable CIC filter (M delays, R interpolation factor, N sections)
-//! Calculo de Width = NBits + log2​(M × N)
+//! @date 07/04/25
+//! @brief Parametrizable CIC filter (M delays, R interpolation factor, N sections)
 
 `timescale 1ns / 1ps
 
 module cic_int_param
   #(
      parameter integer NBits  = 16,  //! Number of bits data signal
-     parameter integer Width  = 20,  //! Number of bits internal registers
+     parameter integer Width  = 20,  //! Number of bits internal registers (NBits + log2​(M × N))
      parameter integer R      = 10,  //! Interpolation ratio
      parameter integer M      = 1,   //! Number of delays
      parameter integer N      = 3    //! Number of sections
@@ -107,29 +107,24 @@ module cic_int_param
   end
 
   //! Integration stage (operating at f_clk * R)
-  always @(posedge clk_int)
+  always @(posedge clk_int) 
   begin
-    if (rst)
+    if (rst) 
     begin
       for (i = 0; i < N; i = i + 1)
         d_int[i] <= 0;
       data_out <= 0;
-    end
-    else
+    end 
+  else 
     begin
-      if (v_interp)
-      begin
-        // First stage integration
-        d_int[0] <= d_int[0] + d_sync;
-
-        // Generate the rest of the stages
-        for (i = 1; i < N; i = i + 1)
-        begin
-          d_int[i] <= d_int[i] + d_int[i-1];
-        end
-      end
-
-      // Scaled output
+      // First integration stage
+      d_int[0] <= d_int[0] + d_sync;
+  
+      // Remaining stages
+      for (i = 1; i < N; i = i + 1)
+        d_int[i] <= d_int[i] + d_int[i-1];
+  
+      // Scaled output (always valid)
       data_out <= d_int[N-1] >>> (Width - NBits);
     end
   end
